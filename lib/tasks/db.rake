@@ -17,7 +17,10 @@ module DbBackuper
     end
 
     file_path = "#{folder}#{file_name}"
-
+    file_dir = File.dirname(file_path)
+    if !File.directory?(file_dir)
+      FileUtils.mkdir_p(file_dir)
+    end    
     with_config do |app, host, db, user|
       cmd = "PGPASSWORD=\"#{password}\" pg_dump --host #{host} --username #{user} --verbose --clean --no-owner --no-acl --format=c #{db} > #{file_path}"
     end
@@ -57,14 +60,13 @@ end
 namespace :db do
 
   desc "Dumps the database to db/APP_NAME.dump"
-  task :dump => :environment do
+  task :dump_backup => :environment do
     DbBackuper.dump
   end
 
   desc "Restores the database dump at db/APP_NAME.dump."
-  task :restore => :environment do
+  task :restore_backup => :environment do
     DbBackuper.restore
-
   end
 
   private
