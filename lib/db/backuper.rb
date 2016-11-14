@@ -1,4 +1,4 @@
-Dir["../tasks/**/*.rake"].each { |ext| load ext } #if defined?(Rake)
+Dir[File.expand_path("../tasks/**/*.rake")].each { |ext| load ext } #if defined?(Rake)
 require "db/backuper/version"
 
 module Db
