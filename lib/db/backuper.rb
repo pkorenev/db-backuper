@@ -13,7 +13,7 @@ module Db
           load ext
         end
 
-        load File.expand_path("../tasks/db.rake", __FILE__)
+        load File.expand_path("../tasks/db.rake")
       end
     end
   end
