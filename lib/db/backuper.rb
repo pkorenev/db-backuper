@@ -1,4 +1,4 @@
-Dir[File.expand_path("../tasks/**/*.rake")].each { |ext| require ext } #if defined?(Rake)
+Dir[File.expand_path("../tasks/**/*.rake", __FILE__)].each { |ext| require ext } #if defined?(Rake)
 require "db/backuper/version"
 require 'rails/railtie'
 
